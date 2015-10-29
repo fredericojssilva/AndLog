@@ -85,7 +85,17 @@ public class AndLog {
         }
     }
 
+    public static void hereIam(){
+        if(LOG_DEBUG_MESSAGES){
+            Log.d(getTag(), getCallerMethod() + " called");
+        }
+    }
+
     private static String getTag() {
         return new Exception().getStackTrace()[1].getClassName();
+    }
+
+    private static String getCallerMethod(){
+        return new Exception().getStackTrace()[1].getMethodName();
     }
 }
