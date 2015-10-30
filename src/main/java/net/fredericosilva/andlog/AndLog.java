@@ -34,6 +34,7 @@ public class AndLog {
             Log.i(tag, message);
         }
     }
+
     /*
     VERBOSE
     */
@@ -46,6 +47,7 @@ public class AndLog {
             Log.v(tag, message);
         }
     }
+
     /*
     WTF
     */
@@ -85,17 +87,18 @@ public class AndLog {
         }
     }
 
-    public static void hereIam(){
-        if(LOG_DEBUG_MESSAGES){
+    public static void hereIam() {
+        if (LOG_DEBUG_MESSAGES) {
             Log.d(getTag(), getCallerMethod() + " called");
         }
     }
 
     private static String getTag() {
-        return new Exception().getStackTrace()[1].getClassName();
+        return new Exception().getStackTrace()[2].getClassName();
     }
 
-    private static String getCallerMethod(){
-        return new Exception().getStackTrace()[1].getMethodName();
+    private static String getCallerMethod() {
+        return new Exception().getStackTrace()[2].getMethodName();
     }
+
 }
