@@ -34,7 +34,7 @@ class CoolClass{
 **Gradle:**
 
 ```
-compile 'net.fredericosilva:andlog:1.0.2'
+compile 'net.fredericosilva:andlog:1.0.3'
 ```
 ##License
 ```
