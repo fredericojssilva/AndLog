@@ -9,6 +9,10 @@ import android.util.Log;
 public class AndLog {
     public static boolean LOG_DEBUG_MESSAGES = true;
 
+    public static void setDebugMode(boolean debug){
+        LOG_DEBUG_MESSAGES = debug;
+    }
+
     /*
     DEBUG
      */
@@ -94,7 +98,9 @@ public class AndLog {
     }
 
     private static String getTag() {
-        return new Exception().getStackTrace()[2].getClass().getSimpleName();
+        String className=new Exception().getStackTrace()[2].getClassName();
+
+        return className.substring(className.lastIndexOf('.') + 1);
     }
 
     private static String getCallerMethod() {
