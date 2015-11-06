@@ -94,7 +94,7 @@ public class AndLog {
     }
 
     private static String getTag() {
-        return new Exception().getStackTrace()[2].getClassName();
+        return new Exception().getStackTrace()[2].getClass().getSimpleName();
     }
 
     private static String getCallerMethod() {
