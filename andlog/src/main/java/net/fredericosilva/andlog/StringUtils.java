@@ -3,7 +3,7 @@ package net.fredericosilva.andlog;
 import android.text.TextUtils;
 
 /**
- * Created by fsilva <fsilva@thinkingphones.com>
+ * Created by fsilva <fredericojssilva@gmail.com>
  * on 28/11/2015 .
  */
 final class StringUtils {
