@@ -15,5 +15,12 @@ public class MainActivity extends AppCompatActivity {
         AndLog.hereIam();
 
         AndLog.d("Woow");
+
+        AndLog.d("Balo", "Bilo", "Silo: 3");
+
+        AndLog.e("Die because reasons", new Exception("booooooooom"));
+
+        AndLog.withTag("FRED").d("balo", "bilo");
+
     }
 }
