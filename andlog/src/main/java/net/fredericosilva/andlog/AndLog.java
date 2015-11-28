@@ -1,110 +1,91 @@
 package net.fredericosilva.andlog;
 
 import android.util.Log;
+import com.google.common.base.Throwables;
 
 /**
  * Created by frederico <fredericojssilva@gmail.com>
  * on 29/10/2015 .
  */
-public class AndLog {
-    public static boolean LOG_DEBUG_MESSAGES = true;
+public final class AndLog {
+  public static boolean isDebug = true;
 
-    public static void setDebugMode(boolean debug){
-        LOG_DEBUG_MESSAGES = debug;
+  private AndLog() {
+
+  }
+
+  public static void setDebugMode(boolean debug) {
+    isDebug = debug;
+  }
+
+  public static Logger withTag(String tag) {
+    return Logger.getInstance(tag);
+  }
+
+  /*
+  DEBUG
+   */
+  public static void d(String... messages) {
+    if (isDebug) {
+      Logger.getInstance(getTag()).d(messages);
     }
+  }
 
-    /*
-    DEBUG
-     */
-    public static void d(String message) {
-        d(getTag(), message);
+  /*
+    INFO
+  */
+  public static void i(String... messages) {
+    Logger.getInstance(getTag()).i(messages);
+  }
+
+  /*
+  VERBOSE
+  */
+  public static void v(String... messages) {
+    Logger.getInstance(getTag()).v(messages);
+  }
+
+  /*
+  WTF
+  */
+  public static void wtf(String... messages) {
+    if (isDebug) {
+      Logger.getInstance(getTag()).wtf(messages);
     }
+  }
 
-    public static void d(String tag, String message) {
-        if (LOG_DEBUG_MESSAGES) {
-            Log.d(tag, message);
-        }
+  /*
+  WARN
+  */
+  public static void w(String... messages) {
+    Logger.getInstance(getTag()).w(messages);
+  }
+
+  /*
+  ERROR
+  */
+  public static void e(String message, Throwable e) {
+    Logger.getInstance(getTag())
+        .e(StringUtils.getComposedString(message, Throwables.getStackTraceAsString(e)));
+  }
+
+  public static void e(String... message) {
+    Logger.getInstance(getTag()).e(message);
+  }
+
+  public static void hereIam() {
+    if (isDebug) {
+      Log.d(getTag(), getCallerMethod() + " called");
     }
+  }
 
-    /*
-      INFO
-    */
-    public static void i(String message) {
-        i(getTag(), message);
-    }
+  private static String getTag() {
+    String className = new Exception().getStackTrace()[2].getClassName();
 
-    public static void i(String tag, String message) {
-        if (LOG_DEBUG_MESSAGES) {
-            Log.i(tag, message);
-        }
-    }
+    return className.substring(className.lastIndexOf('.') + 1);
+  }
 
-    /*
-    VERBOSE
-    */
-    public static void v(String message) {
-        v(getTag(), message);
-    }
-
-    public static void v(String tag, String message) {
-        if (LOG_DEBUG_MESSAGES) {
-            Log.v(tag, message);
-        }
-    }
-
-    /*
-    WTF
-    */
-    public static void wtf(String message) {
-        wtf(getTag(), message);
-    }
-
-    public static void wtf(String tag, String message) {
-        if (LOG_DEBUG_MESSAGES) {
-            Log.wtf(tag, message);
-        }
-    }
-
-    /*
-    WARN
-    */
-    public static void w(String message) {
-        w(getTag(), message);
-    }
-
-    public static void w(String tag, String message) {
-        if (LOG_DEBUG_MESSAGES) {
-            Log.w(tag, message);
-        }
-    }
-
-    /*
-    ERROR
-    */
-    public static void e(String message) {
-        e(getTag(), message);
-    }
-
-    public static void e(String tag, String message) {
-        if (LOG_DEBUG_MESSAGES) {
-            Log.e(tag, message);
-        }
-    }
-
-    public static void hereIam() {
-        if (LOG_DEBUG_MESSAGES) {
-            Log.d(getTag(), getCallerMethod() + " called");
-        }
-    }
-
-    private static String getTag() {
-        String className=new Exception().getStackTrace()[2].getClassName();
-
-        return className.substring(className.lastIndexOf('.') + 1);
-    }
-
-    private static String getCallerMethod() {
-        return new Exception().getStackTrace()[2].getMethodName();
-    }
-
+  private static String getCallerMethod() {
+    return new Exception().getStackTrace()[2].getMethodName();
+  }
 }
