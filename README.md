@@ -7,11 +7,17 @@ class CoolClass{
 	private final static String TAG = "CoolClass";
 
 	public void doThings(){
-		Log.d(TAG, "doThings() called")
+		Log.d(TAG, "doThings() called");
+		
+		Log.d(TAG,"3 things done");
 	}
 
 	public void wowMethod(){
-		Log.d(TAG, "woow")
+		Log.d(TAG, "woow");
+		Log.d(TAG, "woow2");
+		Log.d(TAG, "woow3");
+		
+		Log.e(TAG, "Error loading woow things");
 	}
 }
 ```
@@ -20,10 +26,13 @@ class CoolClass{
 class CoolClass{
 	public void doThings(){
 		AndLog.hereIam();
+		AndLog.d("3 things done");
 	}
 
 	public void wowMethod(){
-		AndLog.d("wooow");
+		AndLog.d("woow", "woow2", "woow3");
+		
+		AndLog.e("Error loading woow things", new Exception("Error"))
 	}
 }
 ```
@@ -34,7 +43,7 @@ class CoolClass{
 **Gradle:**
 
 ```
-compile 'net.fredericosilva:andlog:1.0.4'
+compile 'net.fredericosilva:andlog:1.1.0'
 ```
 ##License
 ```
