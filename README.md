@@ -32,7 +32,10 @@ class CoolClass{
 	public void wowMethod(){
 		AndLog.d("woow", "woow2", "woow3");
 		
-		AndLog.e("Error loading woow things", new Exception("Error"))
+		AndLog.e("Error loading woow things", new Exception("Error"));
+		
+		//You can also use a custom tag
+		AndLog.withTag("FRED").d("value1: 134", "value2: 3");
 	}
 }
 ```
